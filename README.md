@@ -1,1 +1,1 @@
-<h1 align="center">GG</h1>
+<h1 align="center">BankaiSeru / experienced coder </h1>
