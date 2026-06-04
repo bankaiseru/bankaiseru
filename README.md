@@ -1,4 +1,4 @@
-<h1 align="center">BankaiSeru / experienced coder </h1>
+<h1 align="center">🧊 BankaiSeru / experienced coder </h1>
 
 ###
 
