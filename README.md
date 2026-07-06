@@ -1,5 +1,7 @@
 <h1 align="center">🧊 BankaiSeru</h1>
 
+<h3>About:</h3>
+
 ###
 
 <div align="center">
