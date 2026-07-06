@@ -21,7 +21,7 @@
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=cmake" height="40" alt="CMake logo"  />
   <img width="12" />
-  <img src="https://skillicons.dev/icons?i=linux" height="40" alt="CMake logo"  />
+  <img src="https://skillicons.dev/icons?i=linux" height="40" alt="Linux logo"  />
   <img width="12" />
 </div>
 
