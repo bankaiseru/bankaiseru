@@ -18,24 +18,24 @@ local vb = "virtualbox"
 
 -- Web
 local browser = "firefox"
-local messenger = "discord"
+local tg = "Telegram"
+local ds = "discord"
 
 -- Media
 local video = "obs"
-local videoEditor = "Kdenlive"
+local videoEditor = "kdenlive"
 
-------------------
----- MY GAMES ----
-------------------
-
+-- Games
+local steam = "steam"
 local minecraft = "minecraft-launcher"
+local mcreator = "cd ~/MCreator && ./mcreator.sh"
 
 -------------------
 ---- AUTOSTART ----
 -------------------
 
 hl.on("hyprland.start", function () 
-    hl.exec_cmd("hyprpaper") -- Wallpaper
+    hl.exec_cmd("ice shell") -- IceShell
     hl.exec_cmd("wl-paste --type text --watch cliphist store & wl-paste --type image --watch cliphist store") -- Clipboard
 end)
 
@@ -45,12 +45,6 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-
------------------------
------ PERMISSIONS -----
------------------------
-
--- None
 
 -----------------------
 ---- LOOK AND FEEL ----
@@ -195,8 +189,8 @@ hl.device({
 ---- KEYBINDINGS ----
 ---------------------
 
--- Mods
-local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+-- Main
+local mainMod = "SUPER"
 local mainShift = "SUPER + SHIFT"
 local mainCtrl = "SUPER + CTRL"
 local mainAlt = "SUPER + ALT"
@@ -210,13 +204,16 @@ hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(notes)) -- Notes
 hl.bind(mainMod .. " + U", hl.dsp.exec_cmd(vb)) -- Virtual Box
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser)) -- Browser
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(messenger)) -- Messenger
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(ds)) -- Discord
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(tg)) -- Telegram
 
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(video)) -- Video
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(video)) -- Video
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(videoEditor)) -- Video Editor
 
 -- Games
+hl.bind(mainAlt .. " + S", hl.dsp.exec_cmd(steam)) -- Steam
 hl.bind(mainAlt .. " + M", hl.dsp.exec_cmd(minecraft)) -- Minecraft
+hl.bind(mainMega .. " + M", hl.dsp.exec_cmd(mcreator)) -- MCreator
 
 -- Windows
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close()) -- Close
@@ -226,7 +223,7 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("pkill wofi || hyprctl activewindow -j | jq -r '\"CLASS: \" + .class, \"TITLE: \" + .title' | wofi --conf=$HOME/.config/wofi/config-info --style=$HOME/.config/wofi/style-info.css --show dmenu")) -- Get name and class
 
 -- Screenshot
-hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("hyprshot -m region")) -- Screenshot
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/Screenshots")) -- Screenshot
 
 -- Clipboard
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("pkill wofi || cliphist list | wofi --dmenu | cliphist decode | wl-copy"))
@@ -239,10 +236,26 @@ hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("pkill wofi || wofi --show run")) -- 
 -- Warp
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("if warp-cli status | grep -qi 'disconnected'; then warp-cli connect & notify-send -e -u normal -t 4000 -i $HOME/Pictures/Icons/Warp.png 'Warp' 'Connected'; else warp-cli disconnect & notify-send -e -u normal -t 4000 -i $HOME/Pictures/Icons/Warp.png 'Warp' 'Disconnected'; fi"))
 
+-- Volume
+hl.bind(mainAlt .. " + Z", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+hl.bind(mainAlt .. " + X", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
+
+-- Music
+hl.bind(mainAlt .. " + Q",  hl.dsp.exec_cmd("playerctl previous"),{ locked = true })
+hl.bind(mainAlt .. " + W", hl.dsp.exec_cmd("playerctl play-pause"),{ locked = true })
+hl.bind(mainAlt .. " + E",  hl.dsp.exec_cmd("playerctl next"),{ locked = true })
+
 -- System
 hl.bind(mainShift .. " + Q", hl.dsp.exec_cmd("poweroff")) -- Power off
-hl.bind(mainShift .. " + E", hl.dsp.exec_cmd("reboot")) -- Reboot
+hl.bind(mainShift .. " + W", hl.dsp.exec_cmd("reboot")) -- Reboot
 hl.bind(mainShift .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")) -- Logout
+
+-- Keyblock
+hl.define_submap("passthrough", function()
+    hl.bind(mainMod .. " + Escape", hl.dsp.submap("reset"))
+end)
+
+hl.bind(mainMod .. " + Escape", hl.dsp.submap("passthrough"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -256,6 +269,9 @@ for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
     hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
+
+    hl.bind(mainAlt .. " + " .. key,             hl.dsp.focus({ workspace = i + 10}))
+    hl.bind(mainAlt .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i + 10}))
 end
 
 -- Example special workspace (scratchpad)
@@ -283,7 +299,6 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = tr
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
-
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
