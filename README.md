@@ -19,6 +19,8 @@
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=cpp" height="40" alt="C++ logo"  />
   <img width="12" />
+  <img src="https://skillicons.dev/icons?i=cmake" height="40" alt="C++ logo"  />
+  <img width="12" />
 </div>
 
 ###
