@@ -47,7 +47,7 @@
 ###
 
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=linux" height="40" alt="linux logo"  />
+  <img src="https://skillicons.dev/icons?i=windows" height="40" alt="linux logo"  />
   <img width="12" />
 </div>
 
