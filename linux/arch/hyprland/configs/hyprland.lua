@@ -10,7 +10,7 @@ hl.monitor({ output = "eDP-1", disabled = true }) -- Laptop monitor
 ---------------------
 
 -- Essentials
-local terminal = "kitty"
+local terminal = "alacritty"
 local fileManager = "thunar"
 local ide = "code"
 local notes = "obsidian"
@@ -23,20 +23,21 @@ local ds = "discord"
 
 -- Media
 local video = "obs"
-local videoEditor = "kdenlive"
+local videoEditor = "cd ~/Desktop && ./kdenlive.AppImage"
 
 -- Games
 local steam = "steam"
 local minecraft = "minecraft-launcher"
-local mcreator = "cd ~/MCreator && ./mcreator.sh"
 
 -------------------
 ---- AUTOSTART ----
 -------------------
 
 hl.on("hyprland.start", function () 
-    hl.exec_cmd("ice shell") -- IceShell
-    hl.exec_cmd("wl-paste --type text --watch cliphist store & wl-paste --type image --watch cliphist store") -- Clipboard
+    hl.exec_cmd("ice shell &") -- IceShell
+
+    hl.exec_cmd("wl-paste --type text --watch cliphist store &") -- Clipboard
+    hl.exec_cmd("wl-paste --type image --watch cliphist store &") -- Clipboard
 end)
 
 -------------------------------
@@ -64,7 +65,7 @@ hl.config({
 
         resize_on_border = false,
 
-        allow_tearing = false,
+        allow_tearing = false, -- VSYNC Disabling (false = VSYNC is work)
 
         layout = "dwindle",
     },
@@ -213,7 +214,6 @@ hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(videoEditor)) -- Video Editor
 -- Games
 hl.bind(mainAlt .. " + S", hl.dsp.exec_cmd(steam)) -- Steam
 hl.bind(mainAlt .. " + M", hl.dsp.exec_cmd(minecraft)) -- Minecraft
-hl.bind(mainMega .. " + M", hl.dsp.exec_cmd(mcreator)) -- MCreator
 
 -- Windows
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close()) -- Close
@@ -227,11 +227,12 @@ hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/Scr
 
 -- Clipboard
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("pkill wofi || cliphist list | wofi --dmenu | cliphist decode | wl-copy"))
-hl.bind(mainShift .. " + G", hl.dsp.exec_cmd("cliphist wipe & notify-send -e -u normal -t 4000 -i $HOME/Pictures/Icons/Clipboard.png 'Clipboard' 'Succsesfully cleared!'"))
+hl.bind(mainShift .. " + G", hl.dsp.exec_cmd("cliphist wipe & notify-send -e -u normal -t 4000 -i $HOME/Pictures/Icons/Clipboard.png 'Clipboard' 'Successfully cleared!'"))
 
 -- Menu
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("pkill wofi || wofi --show drun")) -- App menu
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("pkill wofi || wofi --show run")) -- Command menu
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd('pkill wofi || bash $HOME/.local/bin/menu.sh')) -- Command menu
 
 -- Warp
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("if warp-cli status | grep -qi 'disconnected'; then warp-cli connect & notify-send -e -u normal -t 4000 -i $HOME/Pictures/Icons/Warp.png 'Warp' 'Connected'; else warp-cli disconnect & notify-send -e -u normal -t 4000 -i $HOME/Pictures/Icons/Warp.png 'Warp' 'Disconnected'; fi"))
