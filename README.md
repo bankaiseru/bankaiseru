@@ -53,8 +53,6 @@
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=linux" height="40" alt="linux logo"  />
   <img width="12" />
-  <img src="https://skillicons.dev/icons?i=mac" height="40" alt="MacOS logo"  />
-  <img width="12" />
 </div>
 
 ###
