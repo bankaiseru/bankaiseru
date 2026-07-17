@@ -24,6 +24,7 @@ local ds = "discord"
 -- Media
 local video = "obs"
 local videoEditor = "cd ~/Desktop && ./kdenlive.AppImage"
+local imageEditor = "inkscape"
 
 -- Games
 local steam = "steam"
@@ -210,6 +211,7 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(tg)) -- Telegram
 
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(video)) -- Video
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(videoEditor)) -- Video Editor
+hl.bind(mainMod .. " + K", hl.dsp.exec_cmd(imageEditor)) -- Image Editor
 
 -- Games
 hl.bind(mainAlt .. " + S", hl.dsp.exec_cmd(steam)) -- Steam
@@ -223,7 +225,7 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("pkill wofi || hyprctl activewindow -j | jq -r '\"CLASS: \" + .class, \"TITLE: \" + .title' | wofi --conf=$HOME/.config/wofi/config-info --style=$HOME/.config/wofi/style-info.css --show dmenu")) -- Get name and class
 
 -- Screenshot
-hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/Screenshots")) -- Screenshot
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/Screenshots")) -- Screenshot region
 
 -- Clipboard
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("pkill wofi || cliphist list | wofi --dmenu | cliphist decode | wl-copy"))
@@ -249,6 +251,7 @@ hl.bind(mainAlt .. " + E",  hl.dsp.exec_cmd("playerctl next"),{ locked = true })
 -- System
 hl.bind(mainShift .. " + Q", hl.dsp.exec_cmd("poweroff")) -- Power off
 hl.bind(mainShift .. " + W", hl.dsp.exec_cmd("reboot")) -- Reboot
+hl.bind(mainShift .. " + U", hl.dsp.exec_cmd("systemctl suspend"))
 hl.bind(mainShift .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")) -- Logout
 
 -- Keyblock
