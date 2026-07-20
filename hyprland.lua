@@ -103,10 +103,8 @@ hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}   
 hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}    } })
 hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
 
--- Проходим валидацию: масса 0.5 (разрешенный минимум), жесткость 800 (вылетит моментально)
 hl.curve("easy",           { type = "spring", mass = 0.51, stiffness = 800, dampening = 35 })
 
--- Высокая скорость (speed = 18), чтобы анимация завершалась за доли секунды
 hl.animation({ leaf = "global",        enabled = true,  speed = 18,   bezier = "default" })
 hl.animation({ leaf = "border",        enabled = true,  speed = 16,   bezier = "easeOutQuint" })
 hl.animation({ leaf = "windows",       enabled = true,  speed = 18,   spring = "easy" })
