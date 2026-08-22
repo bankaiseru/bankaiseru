@@ -61,6 +61,7 @@
   💻 <b>OS:</b> Linux <br>
   📦 <b>Distro:</b> NixOS <br>
   ⚙️ <b>WM:</b> Hyprland <br>
+  <br>
   🔴 <b>Hardware:</b> AMD <br>
   🖥️ <b>Monitor:</b> Samsung C24RG50 (1920x1080 @ 144Hz)
 </div>
