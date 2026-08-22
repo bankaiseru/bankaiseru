@@ -56,3 +56,10 @@
 </div>
 
 ###
+
+  💻 <b>OS:</b> NixOS &nbsp;|&nbsp;
+  ⚙️ <b>WM:</b> Hyprland &nbsp;|&nbsp;
+  🔴 <b>Hardware:</b> AMD &nbsp;|&nbsp;
+  🖥️ <b>Monitor:</b> Samsung C24RG50 (1920x1080 @ 144Hz)
+
+###
