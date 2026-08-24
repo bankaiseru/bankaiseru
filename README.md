@@ -58,12 +58,11 @@
 ###
 
 <div align="center">
-  💻 <b>OS:</b> Linux <br>
-  📦 <b>Distro:</b> NixOS <br>
-  ⚙️ <b>WM:</b> Hyprland <br>
-  <br>
-  🔴 <b>Hardware:</b> AMD <br>
-  🖥️ <b>Monitor:</b> Samsung C24RG50 (1920x1080 @ 144Hz)
+  📦 <b>os:</b> nix <br>
+  💻 <b>sh:</b> fish <br>
+  ⚙️ <b>wm:</b> hyprland <br>
+  <b>shell:</b> caeelstia <br>
+  <b>kr:</b> 6.18.41 <br>
 </div>
 
 ###
