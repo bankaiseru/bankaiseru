@@ -59,10 +59,10 @@
 
 <div align="center">
   📦 <b>os:</b> nix <br>
+  ✦ <b>kr:</b> 6.18.41 <br>
   ⌨ <b>sh:</b> fish <br>
   ⚙️ <b>wm:</b> hyprland <br>
   💻 <b>shell:</b> caeelstia <br>
-  ✦ <b>kr:</b> 6.18.41 <br>
 </div>
 
 ###
