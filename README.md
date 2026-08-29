@@ -23,6 +23,8 @@
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=cs" height="40" alt="C# logo"  />
   <img width="12" />
+  <img src="https://skillicons.dev/icons?i=lua" height="40" alt="Lua logo"  />
+  <img width="12" />
   <img src="https://skillicons.dev/icons?i=cmake" height="40" alt="CMake logo"  />
   <img width="12" />
 </div>
